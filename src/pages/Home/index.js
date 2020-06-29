@@ -1,17 +1,12 @@
 import React from "react";
 import { Jumbotron, Container, Row, Col, Card, Button } from "react-bootstrap";
 import logo from "../../assets/logo.jpg";
+
 export default function Home() {
   return (
     <>
-      <Jumbotron>
-        <img
-          src={logo}
-          width="350"
-          height="300"
-          className="d-inline-block align-top"
-          alt="My-Project logo"
-        />
+      <Jumbotron style={{ textAlign: "center" }}>
+        <img src={logo} alt="My-Project logo" />
       </Jumbotron>
       <Container>
         <Row>
