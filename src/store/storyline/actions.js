@@ -10,7 +10,7 @@ export const storyLines = (data) => {
 export const fetchStoryLines = () => async (dispatch, getState) => {
   try {
     const response = await myAxios.get(`${apiUrl}/storylines`);
-    console.log("response.data:", response.data);
+    //console.log("response.data:", response.data);
     dispatch(storyLines(response.data));
   } catch (error) {
     console.log(error);
