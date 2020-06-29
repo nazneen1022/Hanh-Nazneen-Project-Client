@@ -30,7 +30,7 @@ export default function Home() {
               <Card.Body>
                 <Card.Title>{line}</Card.Title>
                 <Card.Link href="/CreateStory">Create a story</Card.Link>
-                <Card.Link href="/StoryBoard">View all stories</Card.Link>
+                <Card.Link href="/StoryBoard">View stories</Card.Link>
               </Card.Body>
             </Col>
           </Row>
