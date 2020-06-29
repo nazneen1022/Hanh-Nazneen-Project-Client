@@ -7,12 +7,11 @@ export default function Home() {
       <Jumbotron>
         <img
           src={logo}
-          width="250"
-          height="200"
+          width="350"
+          height="300"
           className="d-inline-block align-top"
-          alt="My Project logo"
+          alt="My-Project logo"
         />
-        <h1>Introduction</h1>
       </Jumbotron>
       <Container>
         <Row>
