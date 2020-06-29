@@ -39,15 +39,18 @@ export default function Home() {
 
           {storylines &&
             storylines.map((storyline) => (
-              <Row key={storyline.id}>
-                <Col xs={15}>
-                  <Card.Body>
-                    <Card.Title>{storyline.content}</Card.Title>
-                    <Card.Link href="/CreateStory">Create a story</Card.Link>
-                    <Card.Link href="/StoryBoard">View stories</Card.Link>
-                  </Card.Body>
-                </Col>
-              </Row>
+              <div key={storyline.id}>
+                <Row>
+                  <Col xs={15}>
+                    <Card.Body>
+                      <Card.Title>{storyline.content}</Card.Title>
+                      <Card.Link href="/CreateStory">Create a story</Card.Link>
+                      <Card.Link href="/StoryBoard">View stories</Card.Link>
+                    </Card.Body>
+                  </Col>
+                </Row>
+                <hr />
+              </div>
             ))}
         </Container>
       </div>
