@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Jumbotron, Container, Row, Col, Card, Button } from "react-bootstrap";
 
 import { fetchStoryLines } from "../../store/storyline/actions";
+import { selectUser } from "../../store/user/selectors";
 
 import logo from "../../assets/logo.jpg";
 import "./Home.css";
@@ -10,6 +11,7 @@ import "./Home.css";
 const selectStorylines = (state) => state.storyline;
 
 export default function Home() {
+  const user = useSelector(selectUser);
   const storylines = useSelector(selectStorylines);
 
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ export default function Home() {
   return (
     <div className="myBackground">
       <Jumbotron style={{ textAlign: "center" }}>
+        {user.name ? <h1>{`Welcome, ${user.name}`}</h1> : null}
         <img src={logo} alt="My-Project logo" />
       </Jumbotron>
       <div className="myBackground">
