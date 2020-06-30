@@ -10,7 +10,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import CreateStory from "./pages/CreateStory";
 import StoryBoard from "./pages/StoryBoard";
-
+import StoryDetail from "./pages/StoryDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
@@ -31,7 +31,11 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/CreateStory" component={CreateStory} />
-        <Route path="/StoryBoard" component={StoryBoard} />
+        <Route
+          path="/StoryBoard/storyLine/:storyLineId"
+          component={StoryBoard}
+        />
+        <Route path="/StoryBoard/:storyId" component={StoryDetail} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
       </Switch>
