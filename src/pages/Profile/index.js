@@ -11,16 +11,22 @@ export default function Profile() {
   const user = useSelector(selectUser);
 
   const renderStories = () => {
-    console.log("user.stories:", user.stories);
     return (
-      <div>
-        {user.stories &&
-          user.stories.map((story) => (
-            <SmallStoryCard key={story.id} {...story} />
-          ))}
+      <div className="myProfileBackground">
+        <strong>MY STORIES</strong>
+        <div>
+          {user.stories &&
+            user.stories.map((story) => (
+              <SmallStoryCard key={story.id} {...story} />
+            ))}
+        </div>
       </div>
     );
   };
+
+  if (!user || !user.stories) {
+    return <div>{`Please Login to check details`}</div>;
+  }
 
   return (
     <>
