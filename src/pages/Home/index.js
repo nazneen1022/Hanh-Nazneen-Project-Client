@@ -11,6 +11,7 @@ import {
   InputGroup,
   FormControl,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import {
   fetchStoryLines,
@@ -110,14 +111,30 @@ export default function Home() {
                   <Col xs={15}>
                     <Card.Body>
                       <Card.Title>{storyline.content}</Card.Title>
-                      <Card.Link
-                        href={userLoggedIn ? "/CreateStory" : "/Login"}
-                      >
-                        Create a story
-                      </Card.Link>
-                      <Card.Link href={userLoggedIn ? "/StoryBoard" : "/Login"}>
-                        View stories
-                      </Card.Link>
+
+                      {
+                        <Link
+                          to={
+                            userLoggedIn
+                              ? `/CreateStory/${storyline.id}`
+                              : "/Login"
+                          }
+                        >
+                          Create a story
+                        </Link>
+                      }
+                      <span style={{ padding: "10px" }}> </span>
+                      {
+                        <Link
+                          to={
+                            userLoggedIn
+                              ? `/StoryBoard/${storyline.id}`
+                              : "/Login"
+                          }
+                        >
+                          View stories
+                        </Link>
+                      }
                     </Card.Body>
                   </Col>
                 </Row>
