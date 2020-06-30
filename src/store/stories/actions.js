@@ -12,11 +12,11 @@ export const fetchStoriesSuccess = (stories) => ({
   type: FETCH_STORIES_SUCCESS,
   payload: stories,
 });
-export const fetchAllStories = () => {
+export const fetchAllStories = (storyLineId) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      const response = await axios.get(`${apiUrl}/stories`);
+      const response = await axios.get(`${apiUrl}/stories/${storyLineId}`);
       console.log("stories fetched", response.data);
       dispatch(fetchStoriesSuccess(response.data));
       dispatch(appDoneLoading());
