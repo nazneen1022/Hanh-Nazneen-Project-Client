@@ -14,7 +14,7 @@ export default function CreateStory() {
     "https://5gems.files.wordpress.com/2014/05/134170985_istockphoto_thinkstock1.jpg"
   );
   const [rating, setRating] = useState(0);
-  const { id } = useParams();
+  const { storyLineId } = useParams();
 
   const dispatch = useDispatch();
   const storylines = useSelector(selectStorylines);
@@ -23,7 +23,7 @@ export default function CreateStory() {
 
   if (storylines) {
     const myStoryline = [...storylines].filter(
-      (storyline) => storyline.id === parseInt(id)
+      (storyline) => storyline.id === parseInt(storyLineId)
     );
 
     storyline = myStoryline[0].content;
@@ -31,7 +31,7 @@ export default function CreateStory() {
 
   const submitForm = (event) => {
     event.preventDefault();
-    dispatch(createMyStory(id, title, myStory, imageUrl, rating));
+    dispatch(createMyStory(storyLineId, title, myStory, imageUrl, rating));
   };
 
   return (

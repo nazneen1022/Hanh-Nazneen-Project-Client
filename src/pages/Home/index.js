@@ -128,7 +128,7 @@ export default function Home() {
                         <Link
                           to={
                             userLoggedIn
-                              ? `/StoryBoard/${storyline.id}`
+                              ? `/StoryBoard/storyLine/${storyline.id}`
                               : "/Login"
                           }
                         >
