@@ -1,0 +1,28 @@
+.myCol {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 20px;
+  padding: 20px;
+}
+label {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.col-25 {
+  float: left;
+  width: 200px;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 150px;
+  margin-top: 6px;
+}
