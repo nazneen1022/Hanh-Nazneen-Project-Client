@@ -115,7 +115,13 @@ export default function Home() {
                       >
                         Create a story
                       </Card.Link>
-                      <Card.Link href={userLoggedIn ? "/StoryBoard" : "/Login"}>
+                      <Card.Link
+                        href={
+                          userLoggedIn
+                            ? `/StoryBoard/storyLine/${storyline.id}`
+                            : "/Login"
+                        }
+                      >
                         View stories
                       </Card.Link>
                     </Card.Body>
