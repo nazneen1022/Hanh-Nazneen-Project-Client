@@ -13,12 +13,12 @@ export default function ViewStories() {
   console.log("stories", stories);
   useEffect(() => {
     dispatch(fetchAllStories(storyLineId));
-  }, [dispatch]);
+  }, [dispatch, storyLineId]);
 
   return (
     <>
       <Jumbotron>
-        <h1>View All Stories</h1>
+        <h1>View Stories with this opening line</h1>
       </Jumbotron>
       {stories &&
         stories.map((story) => {

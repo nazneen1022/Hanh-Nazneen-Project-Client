@@ -31,11 +31,11 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/CreateStory" component={CreateStory} />
-        <Route path="/StoryBoard/:storyLineId" component={StoryBoard} />
         <Route
-          path="StoryBoard/:storyLineId/:storyID"
-          component={StoryDetail}
+          path="/StoryBoard/storyLine/:storyLineId"
+          component={StoryBoard}
         />
+        <Route path="/StoryBoard/:storyId" component={StoryDetail} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
       </Switch>
