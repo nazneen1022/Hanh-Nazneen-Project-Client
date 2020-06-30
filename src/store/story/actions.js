@@ -1,10 +1,14 @@
 import myAxios from "axios";
 import { apiUrl } from "../../config/constants";
-export const createMyStory = (title, story, imageUrl, rating) => async (
-  dispatch,
-  getState
-) => {
-  const { token } = getState().user;
+export const createMyStory = (
+  storyLineId,
+  title,
+  story,
+  imageUrl,
+  rating
+) => async (dispatch, getState) => {
+  const { token, id } = getState().user;
+
   try {
     const response = await myAxios.post(
       `${apiUrl}/story`,
@@ -13,6 +17,8 @@ export const createMyStory = (title, story, imageUrl, rating) => async (
         content: story,
         imageUrl,
         rating,
+        userId: id,
+        storyLineId,
       },
       {
         headers: {

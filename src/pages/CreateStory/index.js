@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Jumbotron, Button, Form, Col, Image } from "react-bootstrap";
 import { createMyStory } from "../../store/story/actions";
@@ -12,12 +13,13 @@ export default function CreateStory() {
     "https://5gems.files.wordpress.com/2014/05/134170985_istockphoto_thinkstock1.jpg"
   );
   const [rating, setRating] = useState(0);
+  const { id } = useParams();
 
   const dispatch = useDispatch();
 
   const storyline = "TODO";
   const submitForm = () => {
-    dispatch(createMyStory(title, myStory, imageUrl, rating));
+    dispatch(createMyStory(id, title, myStory, imageUrl, rating));
   };
 
   return (

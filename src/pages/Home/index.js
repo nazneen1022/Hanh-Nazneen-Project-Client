@@ -111,7 +111,11 @@ export default function Home() {
                     <Card.Body>
                       <Card.Title>{storyline.content}</Card.Title>
                       <Card.Link
-                        href={userLoggedIn ? "/CreateStory" : "/Login"}
+                        href={
+                          userLoggedIn
+                            ? `/CreateStory/${storyline.id}`
+                            : "/Login"
+                        }
                       >
                         Create a story
                       </Card.Link>
