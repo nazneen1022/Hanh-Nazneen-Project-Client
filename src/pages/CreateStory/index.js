@@ -98,7 +98,7 @@ export default function CreateStory() {
           </Form.Row>
           <br />
           <Form.Row>
-            <Col xs={10}>
+            <Col xs={5}>
               <Form.Control
                 type="text"
                 name="imageUrl"
@@ -108,17 +108,19 @@ export default function CreateStory() {
               />
 
               <Form.Text className="text-muted">
-                {`You can give some image url describing your story or will be defaulted with below image`}
+                {`You can give some image url describing your story or will be defaulted with this image`}
               </Form.Text>
             </Col>
-
-            <Col className="mt-2" md={{ span: 4, offset: 2 }}>
-              {imageUrl ? (
-                <Image src={imageUrl} alt="preview" thumbnail />
-              ) : null}
-            </Col>
+            <Form.Group as={Col}>
+              <Col className="mt-2" md={{ span: 6, offset: 2 }}>
+                {imageUrl ? (
+                  <Image src={imageUrl} alt="preview" thumbnail />
+                ) : null}
+              </Col>
+            </Form.Group>
           </Form.Row>
         </Form.Group>
+
         <Button variant="primary" type="submit">
           Post my story
         </Button>
