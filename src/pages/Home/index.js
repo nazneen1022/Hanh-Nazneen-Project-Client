@@ -30,6 +30,8 @@ export default function Home() {
   const user = useSelector(selectUser);
   const storylines = useSelector(selectStorylines);
 
+  const userLoggedIn = user.token ? true : false;
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchStoryLines());
@@ -92,7 +94,12 @@ export default function Home() {
         <Container>
           <Row>
             <Col xs={6}>
-              <Button onClick={handleShow}>Add new Story Line</Button>
+              <Button
+                disabled={!user.token ? true : false}
+                onClick={handleShow}
+              >
+                Add new Story Line
+              </Button>
             </Col>
           </Row>
           {renderModal()}
@@ -103,8 +110,14 @@ export default function Home() {
                   <Col xs={15}>
                     <Card.Body>
                       <Card.Title>{storyline.content}</Card.Title>
-                      <Card.Link href="/CreateStory">Create a story</Card.Link>
-                      <Card.Link href="/StoryBoard">View stories</Card.Link>
+                      <Card.Link
+                        href={userLoggedIn ? "/CreateStory" : "/Login"}
+                      >
+                        Create a story
+                      </Card.Link>
+                      <Card.Link href={userLoggedIn ? "/StoryBoard" : "/Login"}>
+                        View stories
+                      </Card.Link>
                     </Card.Body>
                   </Col>
                 </Row>
