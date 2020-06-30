@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Jumbotron, Button, Form, Col, Image } from "react-bootstrap";
 import { createMyStory } from "../../store/story/actions";
+import { selectStorylines } from "../../store/storyline/selectors";
 
 import "./createstory.css";
 
@@ -16,9 +17,20 @@ export default function CreateStory() {
   const { id } = useParams();
 
   const dispatch = useDispatch();
+  const storylines = useSelector(selectStorylines);
 
-  const storyline = "TODO";
-  const submitForm = () => {
+  let storyline;
+
+  if (storylines) {
+    const myStoryline = [...storylines].filter(
+      (storyline) => storyline.id === parseInt(id)
+    );
+
+    storyline = myStoryline[0].content;
+  }
+
+  const submitForm = (event) => {
+    event.preventDefault();
     dispatch(createMyStory(id, title, myStory, imageUrl, rating));
   };
 

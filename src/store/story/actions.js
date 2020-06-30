@@ -1,5 +1,10 @@
 import myAxios from "axios";
-import { apiUrl } from "../../config/constants";
+import { apiUrl, ADD_STORY } from "../../config/constants";
+
+export const addStory = (story) => {
+  return { type: ADD_STORY, payload: story };
+};
+
 export const createMyStory = (
   storyLineId,
   title,
@@ -26,7 +31,7 @@ export const createMyStory = (
         },
       }
     );
-    console.log("response:", response);
+    dispatch(addStory(response.data));
   } catch (error) {
     console.log(error);
   }

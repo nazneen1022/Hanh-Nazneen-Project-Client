@@ -23,7 +23,7 @@ export default function Navigation() {
         <Nav style={{ width: "100%" }} fill>
           <NavbarItem path="/" linkText="Home" />
           <NavbarItem path="/StoryBoard" linkText="Story Board" />
-          <NavbarItem path="/CreateStory/:id" linkText="Create Story" />
+          {/* <NavbarItem path="/CreateStory/:id" linkText="Create Story" /> */}
           <NavbarItem path="/MyProfile" linkText="My Profile" />
           {loginLogoutControls}
         </Nav>
