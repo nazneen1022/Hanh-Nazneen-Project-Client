@@ -1,8 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Jumbotron, Container, Row, Col, Card, Button } from "react-bootstrap";
+import {
+  Jumbotron,
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Modal,
+  InputGroup,
+  FormControl,
+} from "react-bootstrap";
 
-import { fetchStoryLines } from "../../store/storyline/actions";
+import {
+  fetchStoryLines,
+  createNewStoryline,
+} from "../../store/storyline/actions";
 import { selectUser } from "../../store/user/selectors";
 
 import logo from "../../assets/logo.jpg";
@@ -11,6 +24,9 @@ import "./Home.css";
 const selectStorylines = (state) => state.storyline;
 
 export default function Home() {
+  const [show, setShow] = useState(false);
+  const [storyLine, setStoryLine] = useState("");
+
   const user = useSelector(selectUser);
   const storylines = useSelector(selectStorylines);
 
@@ -23,6 +39,49 @@ export default function Home() {
     return <div>{`Loading...`}</div>;
   }
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => {
+    setShow(true);
+  };
+
+  const handleStorylineAdd = () => {
+    dispatch(createNewStoryline(storyLine));
+  };
+
+  const renderModal = () => {
+    return (
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>New Story Opening Line</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <InputGroup className="mb-3">
+            <FormControl
+              placeholder="New storyline.."
+              aria-label="New storyline"
+              aria-describedby="basic-addon2"
+              value={storyLine}
+              onChange={(event) => setStoryLine(event.target.value)}
+            />
+          </InputGroup>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleStorylineAdd}>
+            Add
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  };
+
   return (
     <div className="myBackground">
       <Jumbotron style={{ textAlign: "center" }}>
@@ -33,10 +92,10 @@ export default function Home() {
         <Container>
           <Row>
             <Col xs={6}>
-              <Button>Add new Story Line</Button>
+              <Button onClick={handleShow}>Add new Story Line</Button>
             </Col>
           </Row>
-
+          {renderModal()}
           {storylines &&
             storylines.map((storyline) => (
               <div key={storyline.id}>
