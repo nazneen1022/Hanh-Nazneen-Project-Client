@@ -3,20 +3,30 @@ import { useSelector } from "react-redux";
 
 import { Jumbotron, Image, Row, Col } from "react-bootstrap";
 import { selectUser } from "../../store/user/selectors";
-import { selectStories } from "../../store/stories/selectors";
+import SmallStoryCard from "../../components/SmallStoryCard";
 
 import "./Profile.css";
 
 export default function Profile() {
   const user = useSelector(selectUser);
-  const myStories = useSelector(selectStories);
-  console.log("myStories:", myStories);
+
+  const renderStories = () => {
+    console.log("user.stories:", user.stories);
+    return (
+      <div>
+        {user.stories &&
+          user.stories.map((story) => (
+            <SmallStoryCard key={story.id} {...story} />
+          ))}
+      </div>
+    );
+  };
 
   return (
     <>
       <Jumbotron>
         <Row>
-          <Col>
+          <Col xs={4} className="myCol1">
             <Image
               src={user.imageUrl}
               alt="profile"
@@ -24,21 +34,22 @@ export default function Profile() {
               height="300px"
             ></Image>
           </Col>
-          <Col className="myCol">
+
+          <Col xs={7} className="myCol2">
             <div className="row">
-              <div className="col-25">
+              <div className="col-15">
                 <label>Name : </label>
               </div>
               <div className="col-75">{user.name}</div>
             </div>
             <div className="row">
-              <div className="col-25">
+              <div className="col-15">
                 <label>Email Id : </label>
               </div>
               <div className="col-75">{user.email}</div>
             </div>
             <div className="row">
-              <div className="col-25">
+              <div className="col-15">
                 <label>About : </label>
               </div>
               <div className="col-75">{user.description}</div>
@@ -46,6 +57,7 @@ export default function Profile() {
           </Col>
         </Row>
       </Jumbotron>
+      {renderStories()}
     </>
   );
 }

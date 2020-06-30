@@ -108,7 +108,7 @@ export default function Home() {
             storylines.map((storyline) => (
               <div key={storyline.id}>
                 <Row>
-                  <Col xs={15}>
+                  <Col xs={25}>
                     <Card.Body>
                       <Card.Title>{storyline.content}</Card.Title>
 
