@@ -24,7 +24,7 @@ export default function Profile() {
     );
   };
 
-  if (!user || !user.stories) {
+  if (!user) {
     return <div>{`Please Login to check details`}</div>;
   }
 

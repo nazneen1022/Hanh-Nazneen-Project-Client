@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Jumbotron, Button, Form, Col, Image } from "react-bootstrap";
-import { createMyStory } from "../../store/story/actions";
+import { createMyStory } from "../../store/stories/actions";
 import { selectStorylines } from "../../store/storyline/selectors";
 
 import "./createstory.css";

@@ -1,4 +1,5 @@
 import { FETCH_STORIES_SUCCESS } from "./actions";
+import { ADD_STORY } from "../../config/constants";
 const initialState = null;
 
 export default (state = initialState, action) => {
@@ -9,6 +10,13 @@ export default (state = initialState, action) => {
       } else {
         return [...state, action.payload];
       }
+    case ADD_STORY: {
+      if (!state) {
+        return action.payload;
+      } else {
+        return [...state, action.payload];
+      }
+    }
     default:
       return state;
   }
