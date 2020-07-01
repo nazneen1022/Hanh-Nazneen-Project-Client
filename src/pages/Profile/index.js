@@ -1,22 +1,36 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Jumbotron, Image, Row, Col } from "react-bootstrap";
 import { selectUser } from "../../store/user/selectors";
+import { getUserWithStoredToken } from "../../store/user/actions";
 import SmallStoryCard from "../../components/SmallStoryCard";
 
 import "./Profile.css";
 
 export default function Profile() {
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserWithStoredToken());
+  }, [dispatch]);
 
   const renderStories = () => {
+    let sortedStories;
+    if (user.stories) {
+      sortedStories = [...user.stories].sort(function (a, b) {
+        if (a.createdAt > b.createdAt) return -1;
+        if (a.createdAt < b.createdAt) return 1;
+        else return 0;
+      });
+    }
     return (
       <div className="myProfileBackground">
         <strong>MY STORIES</strong>
         <div>
-          {user.stories &&
-            user.stories.map((story) => (
+          {sortedStories &&
+            sortedStories.map((story) => (
               <SmallStoryCard key={story.id} {...story} />
             ))}
         </div>
@@ -24,7 +38,7 @@ export default function Profile() {
     );
   };
 
-  if (!user || !user.stories) {
+  if (!user) {
     return <div>{`Please Login to check details`}</div>;
   }
 

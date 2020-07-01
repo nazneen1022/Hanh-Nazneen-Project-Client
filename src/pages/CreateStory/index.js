@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Jumbotron, Button, Form, Col, Image } from "react-bootstrap";
-import { createMyStory } from "../../store/story/actions";
+import { createMyStory } from "../../store/stories/actions";
 import { selectStorylines } from "../../store/storyline/selectors";
 
 import "./createstory.css";
@@ -22,16 +22,17 @@ export default function CreateStory() {
   let storyline;
 
   if (storylines) {
-    const myStoryline = [...storylines].filter(
+    storyline = [...storylines].find(
       (storyline) => storyline.id === parseInt(storyLineId)
-    );
-
-    storyline = myStoryline[0].content;
+    ).content;
+    // console.log("storyline:", storyline);
   }
 
   const submitForm = (event) => {
     event.preventDefault();
-    dispatch(createMyStory(storyLineId, title, myStory, imageUrl, rating));
+    dispatch(
+      createMyStory(storyLineId, title, storyline + myStory, imageUrl, rating)
+    );
   };
 
   return (
@@ -49,6 +50,7 @@ export default function CreateStory() {
                 placeholder="Title of your story.."
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
+                required
               />
             </Col>
           </Form.Row>
@@ -73,6 +75,7 @@ export default function CreateStory() {
                 placeholder="Your story..."
                 value={myStory}
                 onChange={(event) => setMyStory(event.target.value)}
+                required
               />
             </Col>
           </Form.Row>
