@@ -22,16 +22,17 @@ export default function CreateStory() {
   let storyline;
 
   if (storylines) {
-    const myStoryline = [...storylines].filter(
+    storyline = [...storylines].find(
       (storyline) => storyline.id === parseInt(storyLineId)
-    );
-
-    storyline = myStoryline[0].content;
+    ).content;
+    // console.log("storyline:", storyline);
   }
 
   const submitForm = (event) => {
     event.preventDefault();
-    dispatch(createMyStory(storyLineId, title, myStory, imageUrl, rating));
+    dispatch(
+      createMyStory(storyLineId, title, storyline + myStory, imageUrl, rating)
+    );
   };
 
   return (
@@ -49,6 +50,7 @@ export default function CreateStory() {
                 placeholder="Title of your story.."
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
+                required
               />
             </Col>
           </Form.Row>
@@ -73,6 +75,7 @@ export default function CreateStory() {
                 placeholder="Your story..."
                 value={myStory}
                 onChange={(event) => setMyStory(event.target.value)}
+                required
               />
             </Col>
           </Form.Row>
