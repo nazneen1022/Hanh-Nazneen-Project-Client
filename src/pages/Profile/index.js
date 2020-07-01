@@ -44,19 +44,19 @@ export default function Profile() {
           <Col xs={7} className="myCol2">
             <div className="row">
               <div className="col-15">
-                <label>Name : </label>
+                <label className="mylabel">Name : </label>
               </div>
               <div className="col-75">{user.name}</div>
             </div>
             <div className="row">
               <div className="col-15">
-                <label>Email Id : </label>
+                <label className="mylabel">Email Id : </label>
               </div>
               <div className="col-75">{user.email}</div>
             </div>
             <div className="row">
               <div className="col-15">
-                <label>About : </label>
+                <label className="mylabel">About : </label>
               </div>
               <div className="col-75">{user.description}</div>
             </div>

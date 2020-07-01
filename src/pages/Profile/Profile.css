@@ -15,7 +15,7 @@
   text-align: center;
   width: 10%;
 }
-label {
+.mylabel {
   display: inline-block;
   width: 100px;
   text-align: right;
