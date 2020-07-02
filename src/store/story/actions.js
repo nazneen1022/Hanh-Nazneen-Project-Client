@@ -14,7 +14,7 @@ export const fetchAStory = (storyId) => {
     dispatch(appLoading());
     try {
       const response = await axios.get(`${apiUrl}/stories/story/${storyId}`);
-      console.log("story etched", response.data);
+
       dispatch(fetchAStorySuccess(response.data));
       dispatch(appDoneLoading());
     } catch (error) {
@@ -52,6 +52,71 @@ export const rateAStory = (storyId, ratingValue) => {
       );
       // console.log("story fetched after rate", response.data);
       dispatch(rateAStorySuccess(response.data));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.message);
+      } else {
+        console.log(error);
+      }
+
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+// fetch comments
+export const FETCH_COMMENTS_SUCCESS = "FETCH_COMMENTS_SUCCESS";
+export const fetchCommentsSuccess = (comments) => ({
+  type: FETCH_COMMENTS_SUCCESS,
+  payload: comments,
+});
+
+export const fetchCommentsOfAStory = (storyId) => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    try {
+      const response = await axios.get(
+        `${apiUrl}/stories/story/${storyId}/comments`
+      );
+      // console.log("comments fetched", response.data.comments);
+      dispatch(fetchCommentsSuccess(response.data.comments));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.message);
+      } else {
+        console.log(error);
+      }
+
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+// add new comment
+export const ADD_NEW_COMMENT_SUCCESS = "ADD_NEW_COMMENT_SUCCESS";
+export const addCommentSuccess = (comments) => ({
+  type: ADD_NEW_COMMENT_SUCCESS,
+  payload: comments,
+});
+
+export const addComment = (storyId, content) => {
+  return async (dispatch, getState) => {
+    const { token } = selectUser(getState());
+
+    try {
+      const response = await axios.post(
+        `${apiUrl}/stories/story/${storyId}/comments`,
+        { content },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("comments fetched after adding", response.data.comments);
+      dispatch(addCommentSuccess(response.data.comments));
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
