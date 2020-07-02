@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Jumbotron, Button, Form, Col, Image } from "react-bootstrap";
@@ -8,6 +8,7 @@ import { selectStory } from "../../store/story/selectors";
 
 import "./createstory.css";
 
+import { FaMicrophone } from "react-icons/fa";
 import PropTypes from "prop-types";
 import SpeechRecognition from "react-speech-recognition";
 
@@ -49,6 +50,30 @@ const CreateStory = ({
   const storylines = useSelector(selectStorylines);
   const newStory = useSelector(selectStory);
 
+  // Speech Recognition code - start
+  const [listening, setListening] = useState(false);
+  const [mycolor, setMycolor] = useState("green");
+
+  useEffect(() => {
+    function handleListen() {
+      // handle speech recognition here
+      if (listening) {
+        setMycolor("red");
+        startListening();
+        recognition.onend = () => recognition.start();
+      } else {
+        setMycolor("green");
+        stopListening();
+      }
+    }
+    handleListen();
+  }, [listening, startListening, stopListening]);
+
+  if (!browserSupportsSpeechRecognition) {
+    return null;
+  }
+  // Speech Recognition code - end
+
   let storyline;
 
   if (storylines) {
@@ -70,7 +95,7 @@ const CreateStory = ({
       <Jumbotron>
         <h2>Create New Story</h2>
         <br />
-        <h5>Adding your story to the opening line </h5>
+        <h5>Adding your story with the opening line </h5>
       </Jumbotron>
       <Form className="myForm" onSubmit={submitForm}>
         <Form.Group>
@@ -99,16 +124,39 @@ const CreateStory = ({
           </Form.Row>
           <br />
           <Form.Row>
+            <Button onClick={resetTranscript}>Reset Text </Button>
+
+            <Form.Text>{listening && `Started Recording`}</Form.Text>
+          </Form.Row>
+          <br />
+          <Form.Row>
             <Col xs={10}>
-              <Form.Control
-                size="md"
-                as="textarea"
-                rows="10"
-                placeholder="Your story..."
-                value={myStory || transcript}
-                onChange={(event) => setMyStory(event.target.value)}
-                required
-              />
+              <div style={{ position: "relative" }}>
+                <Form.Control
+                  size="md"
+                  as="textarea"
+                  rows="10"
+                  placeholder="Your story... "
+                  value={listening ? transcript : myStory}
+                  onChange={(event) => setMyStory(event.target.value)}
+                  required
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "5px",
+                    padding: "0% 100% 0% 95%",
+                    fontSize: "15px",
+                  }}
+                >
+                  <button
+                    style={{ border: "none", color: mycolor }}
+                    onClick={() => setListening(!listening)}
+                  >
+                    <FaMicrophone />
+                  </button>
+                </div>
+              </div>
             </Col>
           </Form.Row>
           <br />
