@@ -1,4 +1,5 @@
 import { FETCH_STORIES_SUCCESS } from "./actions";
+
 const initialState = null;
 
 export default (state = initialState, action) => {
