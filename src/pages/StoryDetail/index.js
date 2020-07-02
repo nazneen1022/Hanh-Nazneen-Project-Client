@@ -4,20 +4,28 @@ import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import "./StoryDetail.css";
 
-import { fetchAStory, rateAStory } from "../../store/story/actions";
+import {
+  fetchAStory,
+  rateAStory,
+  fetchCommentsOfAStory,
+} from "../../store/story/actions";
 import { selectStory } from "../../store/story/selectors";
 import { selectToken } from "../../store/user/selectors";
 import StarRating from "../../components/StarRating";
+import CommentCard from "../../components/Comments/CommentCard";
 
 export default function StoryDetail() {
   const [rating, setRating] = useState(0);
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const storyId = useParams().storyId;
-  const story = useSelector(selectStory);
+  const story = useSelector(selectStory).story;
+  const comments = useSelector(selectStory).comments;
+  console.log("comments", comments);
 
   useEffect(() => {
     dispatch(fetchAStory(storyId));
+    dispatch(fetchCommentsOfAStory(storyId));
   }, [dispatch, storyId]);
 
   function handleRating(event) {
@@ -29,20 +37,18 @@ export default function StoryDetail() {
     <div className="storyDetail">
       <Container className="storyContent">
         <Row>
-          <Col xs={12} md={8}>
+          <Col xs={12} md={6}>
             <Card>
               <Card.Body>
                 <Card.Title>
                   <h3 className="storyTitle">{story.title}</h3>{" "}
+                  <StarRating ratingAverage={story.ratingAverage} />
+                  <i>
+                    <h6>Author: {story.user && story.user.name}</h6>
+                  </i>
                 </Card.Title>
-                <StarRating ratingAverage={story.ratingAverage} />
-                <Card.Text>
-                  <h6>
-                    <i>Author: {story.user && story.user.name}</i>
-                  </h6>
-
-                  <div>{story.content}</div>
-                </Card.Text>
+                <Card.Img src={`${story.imageUrl}`} alt="story-image" />
+                <Card.Text className="storyContent">{story.content}</Card.Text>
               </Card.Body>{" "}
             </Card>
           </Col>
@@ -73,6 +79,10 @@ export default function StoryDetail() {
                 </Button>
               </Form>
             ) : null}
+            {comments &&
+              comments.map((comment) => {
+                return <CommentCard {...comment} />;
+              })}
           </Col>
         </Row>
       </Container>

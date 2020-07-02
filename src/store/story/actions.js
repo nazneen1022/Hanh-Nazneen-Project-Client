@@ -64,3 +64,32 @@ export const rateAStory = (storyId, ratingValue) => {
     }
   };
 };
+
+// fetch comments
+export const FETCH_COMMENTS_SUCCESS = "FETCH_COMMENTS_SUCCESS";
+export const fetchCommentsSuccess = (comments) => ({
+  type: FETCH_COMMENTS_SUCCESS,
+  payload: comments,
+});
+
+export const fetchCommentsOfAStory = (storyId) => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    try {
+      const response = await axios.get(
+        `${apiUrl}/stories/story/${storyId}/comments`
+      );
+      console.log("comments fetched", response.data.comments);
+      dispatch(fetchCommentsSuccess(response.data.comments));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.message);
+      } else {
+        console.log(error);
+      }
+
+      dispatch(appDoneLoading());
+    }
+  };
+};
