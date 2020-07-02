@@ -29,7 +29,6 @@ export default function CreateStory() {
     storyline = [...storylines].find(
       (storyline) => storyline.id === parseInt(storyLineId)
     ).content;
-    // console.log("storyline:", storyline);
   }
 
   const submitForm = (event) => {
@@ -41,9 +40,9 @@ export default function CreateStory() {
   };
 
   return (
-    <>
+    <div style={{ backgroundColor: "#e6f9ff" }}>
       <Jumbotron>
-        <h1>Create New Story</h1>
+        <h3>Create New Story</h3>
       </Jumbotron>
       <Form className="myForm" onSubmit={submitForm}>
         <Form.Group>
@@ -87,7 +86,7 @@ export default function CreateStory() {
           <br />
 
           <Form.Row>
-            <Col xs={5}>
+            <Col xs={10}>
               <Form.Control
                 type="text"
                 name="imageUrl"
@@ -100,18 +99,19 @@ export default function CreateStory() {
                 {`You can give some image url describing your story or will be defaulted with this image`}
               </Form.Text>
             </Col>
-            <Form.Group as={Col}>
-              <Col className="mt-2" md={{ span: 6, offset: 2 }}>
-                {imageUrl ? (
-                  <Image src={imageUrl} alt="preview" thumbnail />
-                ) : null}
-              </Col>
-            </Form.Group>
+          </Form.Row>
+          <br />
+          <Form.Row>
+            <Col xs={4} style={{ paddingTop: "100px" }}>
+              <Button variant="primary" type="submit">
+                Post my story
+              </Button>
+            </Col>
+            <Col xs={5}>
+              {imageUrl && <Image src={imageUrl} alt="preview" thumbnail />}
+            </Col>
           </Form.Row>
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Post my story
-        </Button>
         {storyCreated && newStory && (
           <Link to={`/StoryBoard/${newStory.id}`}>
             <div
@@ -125,7 +125,8 @@ export default function CreateStory() {
             </div>
           </Link>
         )}
+        <br />
       </Form>
-    </>
+    </div>
   );
 }
