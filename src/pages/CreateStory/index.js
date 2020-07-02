@@ -52,7 +52,7 @@ const CreateStory = ({
 
   // Speech Recognition code - start
   const [listening, setListening] = useState(false);
-  const [mycolor, setMycolor] = useState("green");
+  const [mycolor, setMycolor] = useState("gray");
 
   useEffect(() => {
     function handleListen() {
@@ -62,12 +62,13 @@ const CreateStory = ({
         startListening();
         recognition.onend = () => recognition.start();
       } else {
-        setMycolor("green");
+        setMycolor("gray");
         stopListening();
       }
+      setMyStory(`${transcript}`);
     }
     handleListen();
-  }, [listening, startListening, stopListening]);
+  }, [listening, startListening, stopListening, transcript]);
 
   if (!browserSupportsSpeechRecognition) {
     return null;
@@ -78,7 +79,7 @@ const CreateStory = ({
 
   if (storylines) {
     storyline = [...storylines].find(
-      (storyline) => storyline.id === parseInt(storyLineId)
+      (storyln) => storyln.id === parseInt(storyLineId)
     ).content;
   }
 
@@ -88,6 +89,7 @@ const CreateStory = ({
       createMyStory(storyLineId, title, `${storyline} ${myStory}`, imageUrl)
     );
     setStoryCreated(true);
+    resetTranscript();
   };
 
   return (
@@ -95,7 +97,9 @@ const CreateStory = ({
       <Jumbotron>
         <h2>Create New Story</h2>
         <br />
-        <h5>Adding your story with the opening line </h5>
+        <h5>
+          <em>Adding your story with the opening line</em>
+        </h5>
       </Jumbotron>
       <Form className="myForm" onSubmit={submitForm}>
         <Form.Group>
@@ -122,34 +126,31 @@ const CreateStory = ({
               />
             </Col>
           </Form.Row>
-          <br />
-          <Form.Row>
-            <Button onClick={resetTranscript}>Reset Text </Button>
 
-            <Form.Text>{listening && `Started Recording`}</Form.Text>
-          </Form.Row>
           <br />
           <Form.Row>
             <Col xs={10}>
               <div style={{ position: "relative" }}>
+                <Form.Text>{listening && `Started Recording`}</Form.Text>
                 <Form.Control
                   size="md"
                   as="textarea"
                   rows="10"
                   placeholder="Your story... "
-                  value={listening ? transcript : myStory}
+                  value={myStory}
                   onChange={(event) => setMyStory(event.target.value)}
                   required
                 />
                 <div
                   style={{
                     position: "absolute",
-                    top: "5px",
+                    top: "90%",
                     padding: "0% 100% 0% 95%",
                     fontSize: "15px",
                   }}
                 >
                   <button
+                    type="button"
                     style={{ border: "none", color: mycolor }}
                     onClick={() => setListening(!listening)}
                   >
@@ -160,7 +161,10 @@ const CreateStory = ({
             </Col>
           </Form.Row>
           <br />
-
+          <Form.Row>
+            <Button onClick={resetTranscript}>Reset Story</Button>
+          </Form.Row>
+          <br />
           <Form.Row>
             <Col xs={10}>
               <Form.Control
