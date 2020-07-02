@@ -113,7 +113,17 @@ export default function CreateStory() {
           Post my story
         </Button>
         {storyCreated && newStory && (
-          <Link to={`/StoryBoard/${newStory.id}`}>View story</Link>
+          <Link to={`/StoryBoard/${newStory.id}`}>
+            <div
+              style={{
+                display: "inline",
+                postion: "absolute",
+                paddingLeft: "150px",
+              }}
+            >
+              View story
+            </div>
+          </Link>
         )}
       </Form>
     </>
