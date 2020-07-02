@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Jumbotron, Button, Form, Col, Image } from "react-bootstrap";
-import { createMyStory } from "../../store/stories/actions";
+import { createMyStory } from "../../store/story/actions";
 import { selectStorylines } from "../../store/storyline/selectors";
+import { selectStory } from "../../store/story/selectors";
 
 import "./createstory.css";
 
@@ -13,7 +14,6 @@ export default function CreateStory() {
   const [imageUrl, setMyImageUrl] = useState(
     "https://5gems.files.wordpress.com/2014/05/134170985_istockphoto_thinkstock1.jpg"
   );
-  const [rating, setRating] = useState(0);
 
   const [storyCreated, setStoryCreated] = useState(false);
 
@@ -21,6 +21,7 @@ export default function CreateStory() {
 
   const dispatch = useDispatch();
   const storylines = useSelector(selectStorylines);
+  const newStory = useSelector(selectStory);
 
   let storyline;
 
@@ -34,7 +35,7 @@ export default function CreateStory() {
   const submitForm = (event) => {
     event.preventDefault();
     dispatch(
-      createMyStory(storyLineId, title, storyline + myStory, imageUrl, rating)
+      createMyStory(storyLineId, title, `${storyline} ${myStory}`, imageUrl)
     );
     setStoryCreated(true);
   };
@@ -84,26 +85,7 @@ export default function CreateStory() {
             </Col>
           </Form.Row>
           <br />
-          <Form.Row>
-            <Col xs={5}>
-              <Form.Control
-                as="select"
-                value={rating}
-                onChange={(event) => setRating(event.target.value)}
-              >
-                <option value="0">Rate your story</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </Form.Control>
-              <Form.Text className="text-muted">
-                {`You can rate your own story 1-5, default rating is 0`}
-              </Form.Text>
-            </Col>
-          </Form.Row>
-          <br />
+
           <Form.Row>
             <Col xs={5}>
               <Form.Control
@@ -127,12 +109,11 @@ export default function CreateStory() {
             </Form.Group>
           </Form.Row>
         </Form.Group>
-        {storyCreated && (
-          <Link to={`/StoryBoard/`}>
-            <Button variant="primary" type="submit">
-              Post my story
-            </Button>
-          </Link>
+        <Button variant="primary" type="submit">
+          Post my story
+        </Button>
+        {storyCreated && newStory && (
+          <Link to={`/StoryBoard/${newStory.id}`}>View story</Link>
         )}
       </Form>
     </>
