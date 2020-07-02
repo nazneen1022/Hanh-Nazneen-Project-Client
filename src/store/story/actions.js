@@ -71,7 +71,6 @@ export const rateAStory = (storyId, ratingValue) => {
   };
 };
 
-
 export const addStory = (story) => {
   return { type: ADD_STORY, payload: story };
 };
@@ -111,7 +110,7 @@ export const createMyStory = (storyLineId, title, story, imageUrl) => async (
     }
     dispatch(appDoneLoading());
   }
-
+};
 // fetch comments
 export const FETCH_COMMENTS_SUCCESS = "FETCH_COMMENTS_SUCCESS";
 export const fetchCommentsSuccess = (comments) => ({
@@ -175,5 +174,4 @@ export const addComment = (storyId, content) => {
       dispatch(appDoneLoading());
     }
   };
-
 };
