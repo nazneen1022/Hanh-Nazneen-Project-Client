@@ -11,6 +11,7 @@ export default function ViewStories() {
   const storyLineId = useParams().storyLineId;
   const stories = useSelector(selectStories);
   console.log("stories", stories);
+
   useEffect(() => {
     dispatch(fetchAllStories(storyLineId));
   }, [dispatch, storyLineId]);
