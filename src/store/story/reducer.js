@@ -1,4 +1,4 @@
-import { FETCH_A_STORY_SUCCESS } from "./actions";
+import { FETCH_A_STORY_SUCCESS, RATE_STORY_SUCCESS } from "./actions";
 
 const initialState = {};
 
@@ -10,6 +10,8 @@ export default (state = initialState, action) => {
       } else {
         return { ...state, ...action.payload };
       }
+    case RATE_STORY_SUCCESS:
+      return { ...state, ...action.payload };
     default:
       return state;
   }

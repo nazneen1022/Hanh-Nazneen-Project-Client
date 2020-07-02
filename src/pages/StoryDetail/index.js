@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Container, Row, Col, Card, Form } from "react-bootstrap";
+import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import "./StoryDetail.css";
 
-import { fetchAStory } from "../../store/story/actions";
+import { fetchAStory, rateAStory } from "../../store/story/actions";
 import { selectStory } from "../../store/story/selectors";
+import { selectToken } from "../../store/user/selectors";
 import StarRating from "../../components/StarRating";
 
 export default function StoryDetail() {
   const [rating, setRating] = useState(0);
   const dispatch = useDispatch();
+  const token = useSelector(selectToken);
   const storyId = useParams().storyId;
   const story = useSelector(selectStory);
 
@@ -17,10 +20,10 @@ export default function StoryDetail() {
     dispatch(fetchAStory(storyId));
   }, [dispatch, storyId]);
 
-  function handleRating(value) {
-    setRating(value);
+  function handleRating(event) {
+    event.preventDefault();
+    dispatch(rateAStory(storyId, rating));
   }
-  console.log("send rate to server", rating);
 
   return (
     <div className="storyDetail">
@@ -32,9 +35,11 @@ export default function StoryDetail() {
                 <Card.Title>
                   <h3 className="storyTitle">{story.title}</h3>{" "}
                 </Card.Title>
-                <StarRating rating={story.rating} />
+                <StarRating ratingAverage={story.ratingAverage} />
                 <Card.Text>
-                  <h5>Author: {story.user && story.user.name}</h5>
+                  <h6>
+                    <i>Author: {story.user && story.user.name}</i>
+                  </h6>
 
                   <div>{story.content}</div>
                 </Card.Text>
@@ -42,21 +47,32 @@ export default function StoryDetail() {
             </Card>
           </Col>
           <Col xs={6} md={4}>
-            <Form className="myRateForm">
-              <Form.Label>Rate this story</Form.Label>
-              <Form.Control
-                as="select"
-                value={rating}
-                onChange={(event) => handleRating(event.target.value)}
-              >
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </Form.Control>
-            </Form>
+            {token ? (
+              <Form className="myRateForm">
+                <Form.Label>Rate this story</Form.Label>
+                <Form.Control
+                  as="select"
+                  value={rating}
+                  onChange={(event) => {
+                    setRating(event.target.value);
+                  }}
+                >
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </Form.Control>
+                <Button
+                  className="rateButton"
+                  type="submit"
+                  onClick={handleRating}
+                >
+                  Rate
+                </Button>
+              </Form>
+            ) : null}
           </Col>
         </Row>
       </Container>

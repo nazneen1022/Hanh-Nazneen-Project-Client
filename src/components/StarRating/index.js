@@ -14,7 +14,7 @@ export default function StarRating(props) {
           </span>
         )}
         starCount={5}
-        value={props.rating}
+        value={props.ratingAverage}
       />
     </div>
   );
