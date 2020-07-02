@@ -40,9 +40,11 @@ export default function CreateStory() {
   };
 
   return (
-    <div style={{ backgroundColor: "#e6f9ff" }}>
+    <div style={{ backgroundColor: "#e0ebeb" }}>
       <Jumbotron>
-        <h3>Create New Story</h3>
+        <h2>Create New Story</h2>
+        <br />
+        <h5>Adding your story to the opening line </h5>
       </Jumbotron>
       <Form className="myForm" onSubmit={submitForm}>
         <Form.Group>
@@ -106,25 +108,26 @@ export default function CreateStory() {
               <Button variant="primary" type="submit">
                 Post my story
               </Button>
+              {storyCreated && newStory && (
+                <Link to={`/StoryBoard/${newStory.id}`}>
+                  <div
+                    style={{
+                      display: "inline",
+                      postion: "relative",
+                      padding: "20px",
+                    }}
+                  >
+                    View story
+                  </div>
+                </Link>
+              )}
             </Col>
             <Col xs={5}>
               {imageUrl && <Image src={imageUrl} alt="preview" thumbnail />}
             </Col>
           </Form.Row>
         </Form.Group>
-        {storyCreated && newStory && (
-          <Link to={`/StoryBoard/${newStory.id}`}>
-            <div
-              style={{
-                display: "inline",
-                postion: "absolute",
-                paddingLeft: "150px",
-              }}
-            >
-              View story
-            </div>
-          </Link>
-        )}
+
         <br />
       </Form>
     </div>
