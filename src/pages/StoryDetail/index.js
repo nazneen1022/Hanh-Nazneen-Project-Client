@@ -13,7 +13,7 @@ import { selectStory } from "../../store/story/selectors";
 import { selectToken } from "../../store/user/selectors";
 import StarRating from "../../components/StarRating";
 import CommentCard from "../../components/Comments/CommentCard";
-
+import CommentForm from "../../components/Comments/CommentForm";
 export default function StoryDetail() {
   const [rating, setRating] = useState(0);
   const dispatch = useDispatch();
@@ -21,7 +21,6 @@ export default function StoryDetail() {
   const storyId = useParams().storyId;
   const story = useSelector(selectStory).story;
   const comments = useSelector(selectStory).comments;
-  console.log("comments", comments);
 
   useEffect(() => {
     dispatch(fetchAStory(storyId));
@@ -55,7 +54,9 @@ export default function StoryDetail() {
           <Col xs={6} md={4}>
             {token ? (
               <Form className="myRateForm">
-                <Form.Label>Rate this story</Form.Label>
+                <Form.Label>
+                  <strong>Rate this story</strong>
+                </Form.Label>
                 <Form.Control
                   as="select"
                   value={rating}
@@ -79,10 +80,14 @@ export default function StoryDetail() {
                 </Button>
               </Form>
             ) : null}
+            <h5>
+              <strong>Comments</strong>
+            </h5>
             {comments &&
               comments.map((comment) => {
-                return <CommentCard {...comment} />;
+                return <CommentCard key={comment.id} {...comment} />;
               })}
+            <CommentForm storyId={storyId} />
           </Col>
         </Row>
       </Container>

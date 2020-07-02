@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import "./CommentCard.css";
 export default function CommentCard(props) {
-  console.log("props", props);
   return (
     <Container className="commentCardContainer">
       <Row>
