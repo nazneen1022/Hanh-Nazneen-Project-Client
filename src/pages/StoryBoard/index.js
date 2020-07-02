@@ -16,6 +16,10 @@ export default function ViewStories() {
     dispatch(fetchAllStories(storyLineId));
   }, [dispatch, storyLineId]);
 
+  // if (!stories) {
+  //   return <div>{`Loading...`}</div>;
+  // }
+
   return (
     <>
       <Jumbotron>

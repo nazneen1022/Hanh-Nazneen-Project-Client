@@ -1,0 +1,32 @@
+.myProfileBackground {
+  background-color: rgb(236, 230, 252);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding: 30px;
+}
+.myCol2 {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 20px;
+  padding: 20px;
+  width: 90%;
+}
+.myCol1 {
+  text-align: center;
+  width: 10%;
+}
+.mylabel {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+}
+
+.col-15 {
+  float: left;
+  width: 15%;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+}

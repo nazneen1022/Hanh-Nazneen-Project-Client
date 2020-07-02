@@ -1,6 +1,12 @@
-import { apiUrl } from "../../config/constants";
+import { apiUrl, ADD_STORY } from "../../config/constants";
 import axios from "axios";
-import { appLoading, appDoneLoading } from "../appState/actions";
+
+import {
+  appLoading,
+  appDoneLoading,
+  showMessageWithTimeout,
+  setMessage,
+} from "../appState/actions";
 
 export const FETCH_STORIES_SUCCESS = "FETCH_STORIES_SUCCESS";
 export const fetchStoriesSuccess = (stories) => ({
@@ -25,4 +31,48 @@ export const fetchAllStories = (storyLineId) => {
       dispatch(appDoneLoading());
     }
   };
+};
+
+export const addStory = (story) => {
+  return { type: ADD_STORY, payload: story };
+};
+
+export const createMyStory = (
+  storyLineId,
+  title,
+  story,
+  imageUrl,
+  rating
+) => async (dispatch, getState) => {
+  const { token, id } = getState().user;
+
+  try {
+    const response = await axios.post(
+      `${apiUrl}/stories/${storyLineId}`,
+      {
+        title,
+        content: story,
+        imageUrl,
+        rating,
+        userId: id,
+      },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    dispatch(addStory(response.data));
+    dispatch(showMessageWithTimeout("success", true, "Story created"));
+    dispatch(appDoneLoading());
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data.message);
+      dispatch(setMessage("danger", true, error.response.data.message));
+    } else {
+      console.log(error.message);
+      dispatch(setMessage("danger", true, error.message));
+    }
+    dispatch(appDoneLoading());
+  }
 };
