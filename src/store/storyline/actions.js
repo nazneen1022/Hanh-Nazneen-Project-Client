@@ -1,4 +1,5 @@
 import myAxios from "axios";
+import { appDoneLoading, showMessageWithTimeout } from "../appState/actions";
 
 import { apiUrl } from "../../config/constants";
 import { FETCH_STORY_LINES, ADD_STORY_LINE } from "../../config/constants";
@@ -29,6 +30,8 @@ export const createNewStoryline = (newStoryline) => async (
       }
     );
     dispatch(addNewStoryline(response.data));
+    dispatch(showMessageWithTimeout("success", true, "New storyline created"));
+    dispatch(appDoneLoading());
   } catch (error) {
     console.log(error);
   }

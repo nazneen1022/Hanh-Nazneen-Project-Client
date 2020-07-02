@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Jumbotron, Button, Form, Col, Image } from "react-bootstrap";
 import { createMyStory } from "../../store/stories/actions";
@@ -14,6 +14,9 @@ export default function CreateStory() {
     "https://5gems.files.wordpress.com/2014/05/134170985_istockphoto_thinkstock1.jpg"
   );
   const [rating, setRating] = useState(0);
+
+  const [storyCreated, setStoryCreated] = useState(false);
+
   const { storyLineId } = useParams();
 
   const dispatch = useDispatch();
@@ -33,6 +36,7 @@ export default function CreateStory() {
     dispatch(
       createMyStory(storyLineId, title, storyline + myStory, imageUrl, rating)
     );
+    setStoryCreated(true);
   };
 
   return (
@@ -123,10 +127,13 @@ export default function CreateStory() {
             </Form.Group>
           </Form.Row>
         </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Post my story
-        </Button>
+        {storyCreated && (
+          <Link to={`/StoryBoard/`}>
+            <Button variant="primary" type="submit">
+              Post my story
+            </Button>
+          </Link>
+        )}
       </Form>
     </>
   );

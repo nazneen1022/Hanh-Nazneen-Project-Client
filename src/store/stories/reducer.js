@@ -7,6 +7,9 @@ export default (state = initialState, action) => {
     case FETCH_STORIES_SUCCESS:
       return action.payload;
 
+    case ADD_STORY: {
+      return state;
+    }
 
     default:
       return state;

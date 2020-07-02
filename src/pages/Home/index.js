@@ -42,23 +42,25 @@ export default function Home() {
     return <div>{`Loading...`}</div>;
   }
 
-  const handleClose = () => setShow(false);
+  //const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
   };
 
   const handleStorylineAdd = () => {
     dispatch(createNewStoryline(storyLine));
+    setShow(false);
   };
+
+  const sortedStorylines = [...storylines].sort(function (a, b) {
+    if (a.createdAt < b.createdAt) return 1;
+    if (a.createdAt > b.createdAt) return -1;
+    else return 0;
+  });
 
   const renderModal = () => {
     return (
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
+      <Modal show={show} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>New Story Opening Line</Modal.Title>
         </Modal.Header>
@@ -74,9 +76,9 @@ export default function Home() {
           </InputGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          {/* <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
+          </Button> */}
           <Button variant="primary" onClick={handleStorylineAdd}>
             Add
           </Button>
@@ -104,8 +106,8 @@ export default function Home() {
             </Col>
           </Row>
           {renderModal()}
-          {storylines &&
-            storylines.map((storyline) => (
+          {sortedStorylines &&
+            sortedStorylines.map((storyline) => (
               <div key={storyline.id}>
                 <Row>
                   <Col xs={25}>
