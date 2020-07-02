@@ -8,7 +8,33 @@ import { selectStory } from "../../store/story/selectors";
 
 import "./createstory.css";
 
-export default function CreateStory() {
+import PropTypes from "prop-types";
+import SpeechRecognition from "react-speech-recognition";
+
+const recognition = new SpeechRecognition();
+
+recognition.continous = true;
+
+recognition.lang = "en-US";
+
+const options = {
+  autoStart: false,
+};
+
+const propTypes = {
+  // Props injected by SpeechRecognition
+  transcript: PropTypes.string,
+  resetTranscript: PropTypes.func,
+  browserSupportsSpeechRecognition: PropTypes.bool,
+};
+
+const CreateStory = ({
+  transcript,
+  resetTranscript,
+  startListening,
+  stopListening,
+  browserSupportsSpeechRecognition,
+}) => {
   const [title, setTitle] = useState("");
   const [myStory, setMyStory] = useState("");
   const [imageUrl, setMyImageUrl] = useState(
@@ -79,7 +105,7 @@ export default function CreateStory() {
                 as="textarea"
                 rows="10"
                 placeholder="Your story..."
-                value={myStory}
+                value={myStory || transcript}
                 onChange={(event) => setMyStory(event.target.value)}
                 required
               />
@@ -132,4 +158,7 @@ export default function CreateStory() {
       </Form>
     </div>
   );
-}
+};
+CreateStory.propTypes = propTypes;
+
+export default SpeechRecognition(options)(CreateStory);
