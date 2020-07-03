@@ -1,5 +1,4 @@
 import { ADD_STORY } from "../../config/constants";
-
 import {
   FETCH_A_STORY_SUCCESS,
   RATE_STORY_SUCCESS,

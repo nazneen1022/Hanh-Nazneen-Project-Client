@@ -24,7 +24,7 @@ export default function Navigation() {
           <NavbarItem path="/" linkText="Home" />
           {token ? (
             <>
-              <NavbarItem path="/StoryBoard/storyLine" linkText="Story Board" />
+              {/* <NavbarItem path="/StoryBoard/storyLine" linkText="Story Board" /> */}
               <NavbarItem path="/MyProfile" linkText="My Profile" />
             </>
           ) : null}
