@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
       return { ...state, story: { ...action.payload } };
 
     case ADD_STORY: {
-      return { ...state, story: action.payload };
+      return { story: action.payload, comment: [] };
     }
 
     case FETCH_COMMENTS_SUCCESS:
