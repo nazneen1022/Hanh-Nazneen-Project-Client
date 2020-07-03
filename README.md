@@ -1,6 +1,6 @@
 ## 🙇‍♀️ WHAT's YOUR STORY? 📒
 
-This app provides an ability for the story writers to either create their story on the available story opening line or they can create their own story line of their story. Besides, they can read the stories written by others with the opening line of their interest, provide their comments or rate the story (if they liked it)
+This app provides an ability for the story writers to either create their story on the available story opening line or create their own story line of the story. Besides, they can read the stories written by others with the opening line of their interest, provide the comments or rate the story (if they liked it)
 
 ## Contents
 
@@ -13,7 +13,12 @@ This app provides an ability for the story writers to either create their story 
 
 ## App Demo
 
-- In progress
+![image](https://user-images.githubusercontent.com/63520290/86463771-6c385d80-bd2e-11ea-820b-b22ea727de2d.png)
+![image](https://user-images.githubusercontent.com/63520290/86463737-5cb91480-bd2e-11ea-8609-f3be160b9bca.png)
+![image](https://user-images.githubusercontent.com/63520290/86463810-7e1a0080-bd2e-11ea-974b-3cd6c82db2ea.png)
+![image](https://user-images.githubusercontent.com/63520290/86463878-a3a70a00-bd2e-11ea-886d-5410c26e1d9d.png)
+![image](https://user-images.githubusercontent.com/63520290/86464155-3778d600-bd2f-11ea-8b55-58e8db25bc74.png)
+![image](https://user-images.githubusercontent.com/63520290/86464188-41023e00-bd2f-11ea-84e6-75ffb179546f.png)
 
 ## Technology Used
 
