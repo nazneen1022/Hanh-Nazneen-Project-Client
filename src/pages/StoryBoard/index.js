@@ -32,6 +32,7 @@ export default function ViewStories() {
               key={story.id}
               title={story.title}
               content={story.content}
+              user={story.user}
               storyLineId={story.storyLineId}
               id={story.id}
             />

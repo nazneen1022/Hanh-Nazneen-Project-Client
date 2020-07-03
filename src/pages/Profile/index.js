@@ -31,7 +31,7 @@ export default function Profile() {
         <div>
           {sortedStories &&
             sortedStories.map((story) => (
-              <SmallStoryCard key={story.id} {...story} />
+              <SmallStoryCard key={story.id} user={user} {...story} />
             ))}
         </div>
       </div>

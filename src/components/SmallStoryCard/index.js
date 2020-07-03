@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
-import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
+import moment from "moment";
+import { Container, Card, Row, Col } from "react-bootstrap";
 
 export default function SmallStoryCard(props) {
   return (
@@ -9,11 +9,20 @@ export default function SmallStoryCard(props) {
       <Card className="smallStoryCard">
         <Card.Body className="smallStoryCardBody">
           <Card.Title className="smallStoryCardTitle">
-            {" "}
-            {props.title}
+            <Row>
+              <Col>
+                <strong>{props.title}</strong>
+              </Col>
+              <Col style={{ textAlign: "right", fontSize: "14px" }}>
+                <i>Posted on: {moment(props.createdAt).format("DD-MM-YYYY")}</i>
+              </Col>
+            </Row>
           </Card.Title>
-          {props.content}
-          <br />
+          <Card.Text>
+            <i>Author: {props.user && props.user.name}</i>
+          </Card.Text>
+          <Card.Text>{props.content}</Card.Text>
+          <Card.Footer> </Card.Footer>
           <Card.Link
             className="smallStoryCardLink"
             href={`/StoryBoard/${props.id}`}
