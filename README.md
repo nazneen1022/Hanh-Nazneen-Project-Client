@@ -16,7 +16,7 @@ This app provides an ability for the story writers to either create their story 
 ![image](https://user-images.githubusercontent.com/63520290/86463737-5cb91480-bd2e-11ea-8609-f3be160b9bca.png)
 ![image](https://user-images.githubusercontent.com/63520290/86463771-6c385d80-bd2e-11ea-820b-b22ea727de2d.png)
 ![image](https://user-images.githubusercontent.com/63520290/86484992-d6b1c380-bd57-11ea-8042-6c2e77ffebe7.png)
-![image](https://user-images.githubusercontent.com/63520290/86485129-34dea680-bd58-11ea-90e1-77b11442dc57.png)
+![image](https://user-images.githubusercontent.com/63520290/86485387-e251ba00-bd58-11ea-8ced-cd5f6ff28f73.png)
 ![image](https://user-images.githubusercontent.com/63520290/86464155-3778d600-bd2f-11ea-8b55-58e8db25bc74.png)
 ![image](https://user-images.githubusercontent.com/63520290/86464188-41023e00-bd2f-11ea-84e6-75ffb179546f.png)
 
