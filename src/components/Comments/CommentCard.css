@@ -13,3 +13,7 @@
 /* .commentCardBody {
   width: 70px;
 } */
+
+.commentCardContainer {
+  border: 1px solid;
+}
