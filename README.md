@@ -42,7 +42,7 @@ The goal of this project is to learn team collaboration while building an app
 - Practice disciplined git usage like proper commits & branching.
 - Practice merging of feature branches in git while resolving conflicts (if any) together
 
-## User stories & Wireframe
+## User stories and Wireframe
 
 - User Stories
 
