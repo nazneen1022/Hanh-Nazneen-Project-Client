@@ -40,7 +40,7 @@ export default function StoryDetail() {
             <Card>
               <Card.Body>
                 <Card.Title>
-                  <h3 className="storyTitle">{story.title}</h3>{" "}
+                  <h1 className="storyTitle">{story.title}</h1>{" "}
                   <StarRating ratingAverage={story.ratingAverage} />
                   <i>
                     <h6>Author: {story.user && story.user.name}</h6>

@@ -88,7 +88,6 @@ export const createMyStory = (storyLineId, title, story, imageUrl) => async (
         title,
         content: story,
         imageUrl,
-        rating: 0,
         userId: id,
       },
       {

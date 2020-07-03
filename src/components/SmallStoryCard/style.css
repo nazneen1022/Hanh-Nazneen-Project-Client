@@ -3,10 +3,11 @@
   margin-right: 30px;
   margin-bottom: 30px;
   margin-left: 30px;
-  border: 2px solid lightblue;
 }
-.smallStoryCardTitle {
+.smallStoryCardTitle,
+strong {
   padding-right: 1rem;
-
-  padding-top: 1rem;
+  padding-top: 0.2rem;
+  color: rgb(10, 98, 214);
+  font-size: 300;
 }

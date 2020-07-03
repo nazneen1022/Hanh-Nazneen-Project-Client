@@ -48,8 +48,8 @@ const CreateStory = ({
 
   const dispatch = useDispatch();
   const storylines = useSelector(selectStorylines);
-  const newStory = useSelector(selectStory);
-
+  const newStory = useSelector(selectStory).story;
+  console.log("newStory", newStory);
   // Speech Recognition code - start
   const [listening, setListening] = useState(false);
   const [mycolor, setMycolor] = useState("gray");
