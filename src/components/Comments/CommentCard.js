@@ -1,26 +1,27 @@
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "./CommentCard.css";
 export default function CommentCard(props) {
   return (
-    <Container className="commentCardContainer">
-      <Row>
-        <Card className="commentCard">
-          <Col>
+    <>
+      <Container className="commentCardContainer">
+        <Row>
+          <Col xs={2}>
             <img
               src={props.user && props.user.imageUrl}
               alt="user-profile"
               className="userMiniImage"
             />
           </Col>
-          <Col>
-            <Card.Body className="commentCardBody">
-              <Card.Title> {props.user && props.user.name} </Card.Title>
-              <Card.Text>{props.content}</Card.Text>
-            </Card.Body>
+          <Col style={{ textAlign: "right", fontSize: "14px" }}>
+            <em>{props.user && props.user.name}</em>
           </Col>
-        </Card>
-      </Row>
-    </Container>
+        </Row>
+        <Row>
+          <Col>{props.content}</Col>
+        </Row>
+      </Container>
+      <br />
+    </>
   );
 }

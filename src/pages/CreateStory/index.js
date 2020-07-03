@@ -65,10 +65,10 @@ const CreateStory = ({
         setMycolor("gray");
         stopListening();
       }
-      setMyStory(`${transcript}`);
+      setMyStory(transcript);
     }
     handleListen();
-  }, [listening, startListening, stopListening, transcript]);
+  }, [transcript, listening, startListening, stopListening]);
 
   if (!browserSupportsSpeechRecognition) {
     return null;
