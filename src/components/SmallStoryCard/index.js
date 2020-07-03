@@ -22,7 +22,6 @@ export default function SmallStoryCard(props) {
             <i>Author: {props.user && props.user.name}</i>
           </Card.Text>
           <Card.Text>{props.content}</Card.Text>
-          <Card.Footer> </Card.Footer>
           <Card.Link
             className="smallStoryCardLink"
             href={`/StoryBoard/${props.id}`}

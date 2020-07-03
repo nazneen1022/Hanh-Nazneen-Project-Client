@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Jumbotron } from "react-bootstrap";
+import "./style.css";
 
 import { fetchAllStories } from "../../store/stories/actions";
 import SmallStoryCard from "../../components/SmallStoryCard";
@@ -21,9 +22,15 @@ export default function ViewStories() {
   // }
 
   return (
-    <>
-      <Jumbotron>
-        <h1>View Stories with this opening line</h1>
+    <div className="background">
+      <Jumbotron
+        style={{
+          textAlign: "center",
+          color: "rgb(7, 81, 179)",
+          marginBottom: "3rem",
+        }}
+      >
+        <h2>Stories with this opening line </h2>
       </Jumbotron>
       {stories &&
         stories.map((story) => {
@@ -38,6 +45,6 @@ export default function ViewStories() {
             />
           );
         })}
-    </>
+    </div>
   );
 }

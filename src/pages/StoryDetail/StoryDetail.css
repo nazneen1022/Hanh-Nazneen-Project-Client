@@ -1,8 +1,12 @@
+.storyDetail {
+  background-color: #d1e0e0;
+}
 .storyContent {
-  margin-top: 30px;
   margin-bottom: 20px;
 }
-
+.storyTitle {
+  color: rgb(7, 81, 179);
+}
 .rateButton {
   margin: 0.75rem 0 0.75rem 0;
 }

@@ -89,8 +89,10 @@ export default function Home() {
 
   return (
     <div className="myBackground">
-      <Jumbotron style={{ textAlign: "center" }}>
-        {user.name ? <h1>{`Welcome, ${user.name}`}</h1> : null}
+      <Jumbotron style={{ textAlign: "center", color: "rgb(7, 81, 179)" }}>
+        {user.name ? (
+          <h1 className="welcome">{`Welcome, ${user.name}`}</h1>
+        ) : null}
         <img src={logo} alt="My-Project logo" />
       </Jumbotron>
       <div className="myBackground">
