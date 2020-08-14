@@ -13,6 +13,8 @@ This app provides an ability for the story writers to either create their story 
 
 ## App Demo
 
+[CLICK HERE to check out the MVP DEMO.](https://whatsyourstory.netlify.app/) </br>
+
 ![image](https://user-images.githubusercontent.com/63520290/86463737-5cb91480-bd2e-11ea-8609-f3be160b9bca.png)
 ![image](https://user-images.githubusercontent.com/63520290/86463771-6c385d80-bd2e-11ea-820b-b22ea727de2d.png)
 ![image](https://user-images.githubusercontent.com/63520290/86484992-d6b1c380-bd57-11ea-8042-6c2e77ffebe7.png)
